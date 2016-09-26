@@ -1,8 +1,10 @@
 from downloader import *
 
 URL = 'http://www.nyaa.se/'
-TEST= '[Chihiro-Amaterasu]_Rewrite_-_04_[720P_Hi10P_AAC][CA993780]'
-TESTLINK = 'www.nyaa.se/?page=download&amp;tid=853638'
+TEST= '[HorribleSubs] Active Raid S2 - 12 [720p].mkv'
+TESTLINK = 'http://www.nyaa.se/?page=download&tid=853946'
+TESTFILE= 'downloads/test.torrent'
 
 html = getHTML(URL)
-download_episode(html,TEST)
+find_episode(html,TEST)
+download_episode(TESTLINK,TESTFILE)

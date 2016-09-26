@@ -1,13 +1,15 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-import re
+import urllib
+from requests import get
 
-def download_episode(html_string,episode):
+
+def find_episode(html_string,episode):
     html = BeautifulSoup(html_string, 'html.parser')
     element= (html.find('a', text= episode))
     print(element)
     link = element.get('href')
-    link.replace('view','download')
+    link = link.replace('view','download')
     print(link)
 
 
@@ -24,3 +26,14 @@ def getHTML(url):
 
 def has_link(tag):
     return tag.has_attr('href')
+
+def download_episode(download_link,file_name):
+    with open(file_name, "wb") as file:
+        # get request
+        response = get(download_link)
+        # write to file
+        file.write(response.content)
+
+def opentorrent(filename):
+    output = open(filename, 'wb')
+    output.write(filename.read())
