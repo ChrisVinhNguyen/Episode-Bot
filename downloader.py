@@ -7,6 +7,9 @@ from requests import get
 def find_episode(html_string,episode):
     html = BeautifulSoup(html_string, 'html.parser')
     element= (html.find('a', text= episode))
+    if not element:
+        print('error')
+        return
     print(element)
     link = element.get('href')
     link = link.replace('view','download')
