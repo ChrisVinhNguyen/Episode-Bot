@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import urllib
 from requests import get
+import asyncio
 
 
 def find_episode(html_string,episode):
