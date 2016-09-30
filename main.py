@@ -10,4 +10,8 @@ html = getHTML(URL)
 print(find_episode(html,TEST))
 download_episode(TESTLINK,TESTFILE)
 
-load_yaml('season_conf/watch_list')
+list=set()
+list = load_yaml('season_conf/watch_list')
+
+temp2 = Show('title',5,'source')
+temp2.print_info()
