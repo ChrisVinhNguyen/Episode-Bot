@@ -19,7 +19,7 @@ def load_yaml(path):
             if k == 'source':
                 source = v
             temp = Show(title,episode_count,source)
-
+        temp.print_info()
     return list
 
 

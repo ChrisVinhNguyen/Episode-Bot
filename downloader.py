@@ -9,7 +9,7 @@ def find_episode(html_string,episode):
     html = BeautifulSoup(html_string, 'html.parser')
     element= (html.find('a', text= episode))
     if not element:
-        error = 'error'
+        error = 'error, not found'
         return error
     print(element)
     link = element.get('href')
