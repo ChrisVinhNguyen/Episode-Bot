@@ -11,9 +11,11 @@ def find_episode(html_string,episode):
     if not element:
         error = 'error, not found'
         return error
-    print(element)
+
     link = element.get('href')
     link = link.replace('view','download')
+    link = link.replace('//','http://')
+    print('Found link --------> ' + link)
     return link
 
 

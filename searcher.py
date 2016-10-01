@@ -1,9 +1,8 @@
 import yaml
 from show import Show
 
-def load_yaml(path):
+def search(path,html):
 
-    list=set()
     title = 'placeholder_title'
     episode_count = 0
     source = 'placeholder_source'
@@ -19,8 +18,10 @@ def load_yaml(path):
             if k == 'source':
                 source = v
             temp = Show(title,episode_count,source)
-        temp.print_info()
-    return list
+        if episode_count != 0:
+            #temp.print_info()
+            temp.find_episodes(html)
+
 
 
 
