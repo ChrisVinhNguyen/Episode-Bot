@@ -20,6 +20,7 @@ def search(path,html):
             temp = Show(title,episode_count,source)
         if episode_count != 0:
             #temp.print_info()
+            print('Searching for....' + temp.title)
             temp.find_episodes(html)
 
 
