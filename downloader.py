@@ -2,13 +2,13 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import urllib
 from requests import get
-import asyncio
+import os
 from qbittorrent import Client
 
 
 def find_episode(html_string,episode):
     html = BeautifulSoup(html_string, 'html.parser')
-    element= (html.find('a', text= episode))
+    element= (html.find('a', text=episode))
     if not element:
         error = 'error, not found'
         return error
@@ -46,6 +46,7 @@ def download_torrent(torrent_name,show_name, season):
 
     qb.login('admin','cn101596')
     dl_path = 'E:\Anime 2\\' + show_name + '\\' + 'S' +str(season)
+    create_dir(dl_path)
     torrent_file = open(torrent_name,'rb')
     qb.download_from_file(torrent_file,dl_path)
 
@@ -57,3 +58,8 @@ def stop_seed():
     qb = Client(url='http://localhost:8080')
     qb.login('admin','cn101596')
     qb.pause_all()
+
+def create_dir(directory):
+    if not os.path.exists(directory):
+        print('Creating directory ' + directory)
+        os.makedirs(directory)

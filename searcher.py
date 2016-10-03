@@ -6,11 +6,14 @@ def search(path,html):
     title = 'placeholder_title'
     episode_count = 0
     source = 'placeholder_source'
-    season = 1
 
     stream = open(path, "r")
     docs = yaml.load_all(stream)
     for doc in docs:
+        title = 'placeholder_title'
+        episode_count = 0
+        source = 'placeholder_source'
+        season = 1
         for k, v in doc.items():
             if k == 'title':
                 title = v
