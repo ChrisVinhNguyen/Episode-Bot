@@ -2,20 +2,27 @@ from downloader import *
 
 class Show:
 
-    def __init__(self, title, episode_count, source):
+    def __init__(self, title, episode_count, source , season):
         Show.title = title
         Show.episode_count = episode_count
         Show.source = source
+        Show.season = season
         Show.episode_list = []
         Show.watched_list = []
 
         for i in range(1, Show.episode_count + 1):
             if Show.source == 'HorribleSubs':
                 if i < 10:
-                    name = '[' + Show.source + '] ' + Show.title + ' - 0' + str(i) +' [1080p]'
+                    if season != 1:
+                        name = '[' + Show.source + '] ' + Show.title + ' S' + str(Show.season) + ' - 0' + str(i) + ' [1080p]'
+                    else:
+                        name = '[' + Show.source + '] ' + Show.title + ' - 0' + str(i) +' [1080p]'
                     Show.episode_list.append(name)
                 else:
-                    name = '[' + Show.source + '] ' + Show.title + ' - ' + str(i) + ' [1080p]'
+                    if season != 1:
+                        name = '[' + Show.source + '] ' + Show.title + ' S' + str(Show.season) + ' - ' + str(i) + ' [1080p]'
+                    else:
+                        name = '[' + Show.source + '] ' + Show.title + ' - ' + str(i) +' [1080p]'
                     Show.episode_list.append(name)
 
     def print_info(self):
@@ -30,6 +37,7 @@ class Show:
                 file_name = 'downloads/' + name + '.torrent'
                 print('downloading file ----------> ' + name)
                 download_episode(link,file_name)
+                download_torrent(file_name,Show.title,Show.season)
 
 
 

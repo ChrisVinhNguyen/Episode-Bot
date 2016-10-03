@@ -18,9 +18,10 @@ episode_count: 13
 source: HorribleSubs
 
 ---
-title: Hibike Euphonium S2
+title: Hibike Euphonium
 episode_count: 13
 source: HorribleSubs
+season: 2
 
 ---
 title: Occult;Nine
@@ -29,14 +30,16 @@ source: HorribleSubs
 
 
 ---
-title: Mobile Suit Gundam - Iron-Blooded Orphans S2
+title: Mobile Suit Gundam - Iron-Blooded Orphans
 episode_count: 25
 source: HorribleSubs
+season: 2
 
 ---
-title: Bungou Stray Dogs S2
+title: Bungou Stray Dogs
 episode_count: 13
 source: HorribleSubs
+season: 2
 
 ---
 title: Drifters
@@ -58,3 +61,9 @@ source: HorribleSubs
 title: Kubikiri Cycle
 episode_count: 13
 source: HorribleSubs
+
+---
+title: TRICKSTER
+episode_count: 24
+source: HorribleSubs
+

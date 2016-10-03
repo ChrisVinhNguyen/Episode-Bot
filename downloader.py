@@ -3,6 +3,7 @@ from urllib.request import urlopen
 import urllib
 from requests import get
 import asyncio
+from qbittorrent import Client
 
 
 def find_episode(html_string,episode):
@@ -40,6 +41,19 @@ def download_episode(download_link,file_name):
         # write to file
         file.write(response.content)
 
-def opentorrent(filename):
-    output = open(filename, 'wb')
-    output.write(filename.read())
+def download_torrent(torrent_name,show_name, season):
+    qb = Client(url='http://localhost:8080')
+
+    qb.login('admin','cn101596')
+    dl_path = 'E:\Anime 2\\' + show_name + '\\' + 'S' +str(season)
+    torrent_file = open(torrent_name,'rb')
+    qb.download_from_file(torrent_file,dl_path)
+
+    torrents = qb.torrents()
+    for torrent in torrents:
+        print ('downloading.......' + torrent['name'])
+
+def stop_seed():
+    qb = Client(url='http://localhost:8080')
+    qb.login('admin','cn101596')
+    qb.pause_all()
