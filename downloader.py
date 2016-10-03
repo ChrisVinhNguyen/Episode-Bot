@@ -64,11 +64,11 @@ def download_episode(download_link,file_name):
         # write to file
         file.write(response.content)
 
-def download_torrent(torrent_name,show_name, season):
+def download_torrent(torrent_name,show_name, season,file_name):
     qb = Client(url='http://localhost:8080')
 
     qb.login('admin','cn101596')
-    dl_path = 'E:\Anime 2\\' + show_name + '\\' + 'S' +str(season)
+    dl_path = 'E:\Anime 2\\' + file_name + '\\' + 'S' +str(season)
     create_dir(dl_path)
     torrent_file = open(torrent_name,'rb')
     qb.download_from_file(torrent_file,dl_path)

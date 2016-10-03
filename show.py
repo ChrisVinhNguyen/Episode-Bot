@@ -2,12 +2,13 @@ from downloader import *
 
 class Show:
 
-    def __init__(self, title, episode_count, source , season,quality):
+    def __init__(self, title, episode_count, source , season,quality,file_name):
         Show.title = title
         Show.episode_count = episode_count
         Show.source = source
         Show.season = season
         Show.quality = quality
+        Show.file_name = file_name
         Show.episode_list = []
         Show.watched_list = []
 
@@ -41,7 +42,7 @@ class Show:
                 file_name = 'downloads/' + name + '.torrent'
                 print('downloading file ----------> ' + name)
                 download_episode(link,file_name)
-                download_torrent(file_name,Show.title,Show.season)
+                download_torrent(file_name,Show.title,Show.season,Show.file_name)
 
 
 
