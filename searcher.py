@@ -29,7 +29,7 @@ def search(path,html):
             if k == 'quality':
                 quality = v
             if k == 'file_name':
-                file_name = file_name
+                file_name = v
             temp = Show(title,episode_count,source,season,quality,file_name)
         if episode_count != 0:
             #temp.print_info()
