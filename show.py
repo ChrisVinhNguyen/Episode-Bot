@@ -39,7 +39,10 @@ class Show:
             episode_number = ' ' +name[-2:] + ' '
             link = find_episode(html,Show.title,Show.source,Show.quality,episode_number)
             if link != 'error, not found':
-                file_name = 'downloads/' + name + '.torrent'
+                file_name = 'downloads/' + name + ' S' + Show.season + '.torrent'
+                if os.path.isfile(file_name):
+                    print('Already downloaded')
+                    return
                 print('downloading file ----------> ' + name)
                 download_episode(link,file_name)
                 download_torrent(file_name,Show.title,Show.season,Show.file_name)
