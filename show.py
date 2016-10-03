@@ -2,27 +2,30 @@ from downloader import *
 
 class Show:
 
-    def __init__(self, title, episode_count, source , season):
+    def __init__(self, title, episode_count, source , season,quality):
         Show.title = title
         Show.episode_count = episode_count
         Show.source = source
         Show.season = season
+        Show.quality = quality
         Show.episode_list = []
         Show.watched_list = []
 
         for i in range(1, Show.episode_count + 1):
             if Show.source == 'HorribleSubs':
                 if i < 10:
-                    if season != 1:
-                        name = '[' + Show.source + '] ' + Show.title + ' S' + str(Show.season) + ' - 0' + str(i) + ' [1080p]'
-                    else:
-                        name = '[' + Show.source + '] ' + Show.title + ' - 0' + str(i) +' [1080p]'
+                    #if season != 1:
+                    #    name = '[' + Show.source + '] ' + Show.title + ' S' + str(Show.season) + ' - 0' + str(i) + ' [1080p]'
+                   # else:
+                    #    name = '[' + Show.source + '] ' + Show.title + ' - 0' + str(i) +' [1080p]'
+                    name = Show.title + ' - 0' + str(i)
                     Show.episode_list.append(name)
                 else:
-                    if season != 1:
-                        name = '[' + Show.source + '] ' + Show.title + ' S' + str(Show.season) + ' - ' + str(i) + ' [1080p]'
-                    else:
-                        name = '[' + Show.source + '] ' + Show.title + ' - ' + str(i) +' [1080p]'
+                    #if season != 1:
+                    #    name = '[' + Show.source + '] ' + Show.title + ' S' + str(Show.season) + ' - ' + str(i) + ' [1080p]'
+                    #else:
+                     #   name = '[' + Show.source + '] ' + Show.title + ' - ' + str(i) +' [1080p]'
+                    Show.title + ' - ' + str(i)
                     Show.episode_list.append(name)
 
     def print_info(self):
@@ -31,8 +34,9 @@ class Show:
 
     def find_episodes(self,html):
         for item in Show.episode_list:
-            name = item + '.mkv'
-            link = find_episode(html,name)
+            name = item
+            episode_number = ' ' +name[-2:] + ' '
+            link = find_episode(html,Show.title,Show.source,Show.quality,episode_number)
             if link != 'error, not found':
                 file_name = 'downloads/' + name + '.torrent'
                 print('downloading file ----------> ' + name)

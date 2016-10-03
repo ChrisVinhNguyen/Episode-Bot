@@ -12,8 +12,9 @@ def search(path,html):
     for doc in docs:
         title = 'placeholder_title'
         episode_count = 0
-        source = 'placeholder_source'
+        source = ''
         season = 1
+        quality = ''
         for k, v in doc.items():
             if k == 'title':
                 title = v
@@ -23,7 +24,9 @@ def search(path,html):
                 source = v
             if k == 'season':
                 season = v
-            temp = Show(title,episode_count,source,season)
+            if k == 'quality':
+                quality = v
+            temp = Show(title,episode_count,source,season,quality)
         if episode_count != 0:
             #temp.print_info()
             print('Searching for....' + temp.title)
