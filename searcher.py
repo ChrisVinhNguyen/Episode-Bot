@@ -7,7 +7,7 @@ def search(path,html):
     docs = yaml.load_all(stream)
     for doc in docs:
         title = 'placeholder_title'
-        episode_count = 0
+        episode_count = 1
         source = ''
         season = 1
         quality = ''
@@ -28,7 +28,7 @@ def search(path,html):
                 file_name = v
             temp = Show(title,episode_count,source,season,quality,file_name)
         if episode_count != 0:
-            #temp.print_info()
+            temp.print_info()
             print('Searching for....' + temp.title)
             temp.find_episodes(html)
 

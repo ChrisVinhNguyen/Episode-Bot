@@ -13,13 +13,12 @@ class Show:
         Show.watched_list = []
 
         for i in range(1, Show.episode_count + 1):
-            if Show.source == 'HorribleSubs':
-                if i < 10:
-                    name = Show.title + ' - 0' + str(i)
-                    Show.episode_list.append(name)
-                else:
-                    name = Show.title + ' - ' + str(i)
-                    Show.episode_list.append(name)
+            if i < 10:
+                name = Show.title + ' - 0' + str(i)
+                Show.episode_list.append(name)
+            else:
+                name = Show.title + ' - ' + str(i)
+                Show.episode_list.append(name)
 
     def print_info(self):
         for name in Show.episode_list:
