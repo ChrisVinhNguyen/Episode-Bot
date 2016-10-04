@@ -5,11 +5,12 @@ import schedule
 import time
 
 
-URL = 'http://www.nyaa.se'
+URL = 'http://www.nyaa.se/'
 #URL = 'http://www.nyaa.se/?page=search&cats=0_0&filter=0&term=WWW.wor'
+#URL = 'http://www.nyaa.se/?page=search&cats=0_0&filter=0&term=iron+blood+26'
 TEST= '[HorribleSubs] Active Raid S2 - 12 [720p].mkv'
 TESTLINK = 'http://www.nyaa.se/?page=download&tid=855918'
-TESTFILE= 'E:\Projects\Episode-Bot\downloads\[HorribleSubs] Mobile Suit Gundam - Iron-Blooded Orphans S2 - 01 [1080p].mkv.torrent'
+TESTFILE= 'downloads/test.torrent'
 TESTTITLE = 'WWW.Working!!'
 
 
@@ -18,7 +19,7 @@ count = 0
 print('Start')
 
 def job():
-    print('--------------------------------------------------------------------------------')
+    print('-----------------------------------------------------------------')
     global count
     count+= 1
     print('Booting up...' + str(count))
@@ -27,7 +28,8 @@ def job():
     print('Done')
 
 schedule.every(60).minutes.do(stop_seed)
-schedule.every(3).minutes.do(job)
+schedule.every(15).minutes.do(job)
+download_episode(TESTLINK,TESTFILE)
 
 job()
 

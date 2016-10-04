@@ -5,6 +5,7 @@ import requests
 from requests import get
 import os
 from qbittorrent import Client
+import cfscrape
 
 
 def find_episode(html_string,title,source,quality , episode):
@@ -45,21 +46,20 @@ def find_episode(html_string,title,source,quality , episode):
 
 
 def getHTML(url):
-    html_contents = ''
-    try:
-        page = requests.get("http://rads.stackoverflow.com/amzn/click/0415376327")
-        html_contents = page.text
-    except Exception as e:
-        print(str(e))
+    scraper = cfscrape.create_scraper()
+    page = scraper.get(url,auth=('user','pass'))
+    html_contents = page.text
+    #print (html_contents)
     return html_contents
 
 def has_link(tag):
     return tag.has_attr('href')
 
 def download_episode(download_link,file_name):
+    scraper = cfscrape.create_scraper()
     with open(file_name, "wb") as file:
         # get request
-        response = get(download_link)
+        response = scraper.get(download_link)
         # write to file
         file.write(response.content)
 
@@ -80,6 +80,7 @@ def stop_seed():
     qb = Client(url='http://localhost:8080')
     qb.login('admin','cn101596')
     qb.pause_all()
+    print('Stopping seeds')
 
 def create_dir(directory):
     if not os.path.exists(directory):

@@ -3,10 +3,6 @@ from show import Show
 
 def search(path,html):
 
-    title = 'placeholder_title'
-    episode_count = 0
-    source = 'placeholder_source'
-
     stream = open(path, "r")
     docs = yaml.load_all(stream)
     for doc in docs:
