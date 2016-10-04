@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
+import requests
 from requests import get
 import os
 from qbittorrent import Client
@@ -44,15 +45,13 @@ def find_episode(html_string,title,source,quality , episode):
 
 
 def getHTML(url):
-    html_string = ''
+    html_contents = ''
     try:
-        response = urlopen(url)
-        if 'text/html' in response.getheader('Content-Type'):
-            html_bytes = response.read()
-            html_string = html_bytes.decode("utf-8")
+        page = requests.get("http://rads.stackoverflow.com/amzn/click/0415376327")
+        html_contents = page.text
     except Exception as e:
         print(str(e))
-    return html_string
+    return html_contents
 
 def has_link(tag):
     return tag.has_attr('href')
