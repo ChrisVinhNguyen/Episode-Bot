@@ -14,7 +14,7 @@ count = 0
 
 print('Start')
 
-def job():
+def run():
     print('-----------------------------------------------------------------')
     global count
     count+= 1
@@ -23,13 +23,13 @@ def job():
     search('season_conf/watch_list', html)
     print('Done')
 
-def job2():
+def hsub():
 	print('scanning HorribleSubs')
 	html = getHTML(URLHorribleSubs)
 	search('season_conf/watch_list', html)
 	print('Done')
 
-def job3(searchterm):
+def searchfor(searchterm):
 	print('scanning for ' + searchterm)
 	URLsearch = URLFilter + searchterm
 	html = getHTML(URLsearch)
@@ -37,17 +37,26 @@ def job3(searchterm):
 	print('Done')
 
 schedule.every(60).minutes.do(stop_seed)
-schedule.every(15).minutes.do(job)
+schedule.every(15).minutes.do(run)
 
-job()
-job2()
+#job()
+#job2()
 
 while True:
-	schedule.run_pending()
-	time.sleep(1)
-	searchterm = input('Enter search term: ')
-	if searchterm:
-		job3(searchterm)
+
+	searchterm = input('Enter command: ')
+	if searchterm is 's':
+		run()
+	elif searchterm is 'h':
+		hsub()
+	elif searchterm is 'r':
+		print('Running')
+		run()
+		while True:
+			schedule.run_pending()
+			time.sleep(1)		
+	elif searchterm:
+		searchfor(searchterm)
 	else:
 		print('invalid')
     
